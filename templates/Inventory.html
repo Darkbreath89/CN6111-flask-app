@@ -8,14 +8,16 @@
 #insert {
   background: #F9F9F9;
   padding: 30px;
-  margin: 20px 0;
+  margin-top: 20px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border-radius: 8px;
   font-weight: 100;
   font-size: 14px;
   line-height: 30px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 .container {
   max-width: 800px;
   width: 100%;
@@ -34,83 +36,103 @@ input[type=submit] {
     color:black;
 }
 form {
-	color: black;
+  color: black;
   font-size: 14px;
 }
 #radiobuttons{
   margin-left: 40%;
   text-align: left;
-
 }
-#talbebg{
-  
+#tablebg{
+  background-color: white;
+  margin-top: 20px; 
+}
+td {
+ text-align: center;
+ border-color: black;
+ padding-left: 1%;
+ padding-right: 1%;
+}
+#tr1 {
+color: black;
+background-color: rgba(34, 226, 159, 1);
+border-color: black;
+}
+th {
+   text-align: center;
 }
 
-
+#result{
+  color:red;
+  margin-top: 3%;
+  background-color:
+}
 </style>
 
 </head>
 <body>
 <div class="container">
 <center>
-	<button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
+  <button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
 </center>
-		{% if list %}
-		<form action="http://localhost:5000/Inventory" method="POST">
+    {% if list %}
+    <form action="http://localhost:5000/Inventory" method="POST">
     <div id="tablebg">
-	    <table border = 1>
-			<tr>
-				<th>Package Id</th>
-				<th>Sender Name</th>
-				<th>Recepient Name</th>
-				<th>City</th>
-				<th>Address</th>
-				<th>Postal Code</th>
-				<th>Date Received</th>
-				<th>Date Sent</th>
-			</tr>
-         {% for l in list %}			
+      <table border = 1>
+      <tr id=tr1>
+        <th>Package Id</th>
+        <th>Sender Name</th>
+        <th>Recepient Name</th>
+        <th>City</th>
+        <th>Address</th>
+        <th>Postal Code</th>
+        <th>Date Received</th>
+        <th>Date Sent</th>
+      </tr>
+         {% for l in list %}      
             <tr>
                <td> {{ l.id }} </td>
                <td> {{ l.sender_name }} </td>
-			   <td> {{ l.rec_name}} </td>
-			   <td> {{ l.city }} </td>
-			   <td> {{ l.address }} </td>
-			   <td> {{ l.tk }} </td>
-			   <td> {{ l.rdate }} </td>
-			   <td> {{ l.sdate }} </td>
-			   <td><input type="checkbox" name="row" value="{{l.id}}"></td>
+         <td> {{ l.rec_name}} </td>
+         <td> {{ l.city }} </td>
+         <td> {{ l.address }} </td>
+         <td> {{ l.tk }} </td>
+         <td> {{ l.rdate }} </td>
+         <td> {{ l.sdate }} </td>
+         <td><input type="checkbox" name="row" value="{{l.id}}"></td>
             </tr>
             
          {% endfor %}
       </table>
     </div>
-	  <input type="submit" name="action" value="Delete Selected">
-	</form>
-		{% else %}
+    <input type="submit" name="action" value="Delete Selected">
+  </form>
+    {% else %}
   </center>
   <div class="radioform1"> 
-    	<form id="insert" action="http://localhost:5000/Inventory" method="POST">
+      <form id="insert" action="http://localhost:5000/Inventory" method="POST">
       <center>
-    	<p>Filter By</p>
+      <p>Filter By</p>
           <div id="radiobuttons">
-    		  <input type="radio" name="radio" value="0" checked="checked"> All<br>
-    		  <input type="radio" name="radio" value="1"> Name of Sender<br>
-    		  <input type="radio" name="radio" value="2"> Name of Receiver<br>
-    		  <input type="radio" name="radio" value="3"> Id<br>
+          <input type="radio" name="radio" value="0" checked="checked"> All<br>
+          <input type="radio" name="radio" value="1"> Name of Sender<br>
+          <input type="radio" name="radio" value="2"> Name of Receiver<br>
+          <input type="radio" name="radio" value="3"> Id<br>
           </div>
-      		  <!--<input type="text" name="radioform" value=""><br>-->
-      		{{ form.csrf_token }} 
-      		{{ form.radioform }}
-      		{% for message in form.radioform.errors %}<!-- For lopp for each msg error from a specified field -->
-    	   		{{ message }}
-    		{% endfor %}<br>
-    	  <input type="submit" name="action" value="Submit">
+            <!--<input type="text" name="radioform" value=""><br>-->
+          <div id="result">  
+          {{ form.csrf_token }} 
+          {{ form.radioform }}
+          {% for message in form.radioform.errors %}<!-- For lopp for each msg error from a specified field -->
+            <br>{{ message }}
+        {% endfor %}<br>
+        </div>
+        <input type="submit" name="action" value="Submit">
         </center>
-    	</form>
+      </form>
   </div> 
-</div>	
-		{% endif %}
-		
+</div>  
+    {% endif %}
+    
 </body>
 </html>
