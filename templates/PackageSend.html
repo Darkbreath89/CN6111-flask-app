@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PackageSend</title>
+</head>
+<body>
+	<button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
+	<form action="http://localhost:5000/PackageSend" method="POST">
+	  Id<br>
+	  <input type="text" name="id" value="">
+	  <br><br>
+	  <input type="submit" value="Submit">
+	</form> 
+	
+		{% if msg %}
+			<p><strong> {{ msg }}</strong>
+		{% endif %}
+</body>
+</html>

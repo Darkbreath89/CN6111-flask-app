@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Results</title>
+</head>
+<body>
+	<button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
+	 <table border = 1>
+			<tr>
+				<th>Package Id</th>
+				<th>Sender Name</th>
+				<th>Recepient Name</th>
+				<th>City</th>
+				<th>Address</th>
+				<th>Postal Code</th>
+				<th>Date Received</th>
+				<th>Date Sent</th>
+			</tr>
+         {% for l in list %}			
+            <tr>
+               <td> {{ l.id }} </td>
+               <td> {{ l.sender_name }} </td>
+			   <td> {{ l.rec_name}} </td>
+			   <td> {{ l.city }} </td>
+			   <td> {{ l.address }} </td>
+			   <td> {{ l.tk }} </td>
+			   <td> {{ l.rdate }} </td>
+			   <td> {{ l.sdate }} </td>
+            </tr>
+            
+         {% endfor %}
+      </table>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>NewPackage</title>
+</head>
+<body>
+	<button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
+	<form action="http://localhost:5000/NewPackage" method="POST">
+	  Full Name of Sender<br>
+	  <input type="text" name="fnms" value="">
+	  <br>
+	  Full Name of Receiver<br>
+	  <input type="text" name="fnmr" value="">
+	  <br>
+	  Address<br>
+	  <input type="text" name="address" value="">
+	  <br>
+	  City<br>
+	  <input type="text" name="city" value="">
+	  <br>
+	  Postal Code<br>
+	  <input type="text" name="pc" value="">
+	  <br>
+	  <br>
+	  <input type="submit" value="submit">
+	</form> 
+		{% if msg %}
+			<p><strong> {{ msg }}</strong>
+		{% endif %}
+</body>
+</html>
