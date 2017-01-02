@@ -2,3 +2,4 @@ V 0.1 Simple Functional app.
 V 0.2 Simple Functional app. Changing Html generated fields to python generated fields using wtf module and added validators for each field.
 V 0.3 Added Delete functionality
 V 0.4 Changed flask_wtf Form to FlaskForm to suppress deprivation warnings. Added "app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False" line to alchemy.py to suppress relevant warning.
+V 0.5 Added some CSS. 
