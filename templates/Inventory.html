@@ -8,6 +8,7 @@
 
 	
 		{% if list %}
+		<form action="http://localhost:5000/Inventory" method="POST">
 	    <table border = 1>
 			<tr>
 				<th>Package Id</th>
@@ -29,10 +30,13 @@
 			   <td> {{ l.tk }} </td>
 			   <td> {{ l.rdate }} </td>
 			   <td> {{ l.sdate }} </td>
+			   <td><input type="checkbox" name="row" value="{{l.id}}"></td>
             </tr>
             
          {% endfor %}
-      </table>			
+      </table>
+	  <input type="submit" name="action" value="Delete Selected">
+	</form>
 		{% else %}
 	<form action="http://localhost:5000/Inventory" method="POST">
 	<p>Filter By</p>
@@ -46,7 +50,7 @@
   		{% for message in form.radioform.errors %}<!-- For lopp for each msg error from a specified field -->
 	   		{{ message }}
 		{% endfor %}<br>
-	  <input type="submit" value="Submit">
+	  <input type="submit" name="action" value="Submit">
 	</form> 		
 		{% endif %}		
 </body>

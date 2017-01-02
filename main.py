@@ -57,18 +57,23 @@ def inventory():
 	form = RadioForm()#form variable 
 	list=None
 	if request.method=='POST':
-
-		if request.form['radio']=="0":
-			list=Package.query.all()
-		elif request.form['radio']=="1":
-			if form.validate_on_submit():
-				list=Package.query.filter_by(sender_name=request.form['radioform'])
-		elif request.form['radio']=="2":
-			if form.validate_on_submit():
-				list=Package.query.filter_by(rec_name=request.form['radioform'])
-		elif request.form['radio']=="3":
-			if form.validate_on_submit():
-				list=Package.query.filter_by(id=request.form['radioform'])		
+		if request.form["action"]=="Submit":
+			if request.form['radio']=="0":
+				list=Package.query.all()
+			elif request.form['radio']=="1":
+				if form.validate_on_submit():
+					list=Package.query.filter_by(sender_name=request.form['radioform'])
+			elif request.form['radio']=="2":
+				if form.validate_on_submit():
+					list=Package.query.filter_by(rec_name=request.form['radioform'])
+			elif request.form['radio']=="3":
+				if form.validate_on_submit():
+					list=Package.query.filter_by(id=request.form['radioform'])
+		else:
+			for f in request.form.getlist('row'):
+				Package.query.filter_by(id=f).delete()
+				db.session.commit()
+				list=Package.query.all()
 	return render_template('Inventory.html',list=list,form=form)#define form	
 
 	
