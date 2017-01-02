@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import TextField
 from wtforms.validators import InputRequired
 from alchemy import db
@@ -8,15 +8,15 @@ import time
 app = Flask(__name__)
 app.secret_key = 'random string'
 
-class FieldForm(Form):#All the form in this class with Form as constructor
+class FieldForm(FlaskForm):#All the form in this class with FlaskForm as constructor
    fnms = TextField('fnms', validators=[InputRequired('Provide Sender Name')])
    fnmr = TextField('fnmr', validators=[InputRequired('Provide Receiver Name')])
    address = TextField('address', validators=[InputRequired('Adress is Required')])
    city = TextField('city', validators=[InputRequired('City Required')])
    pc = TextField('pc', validators=[InputRequired('Postal code Required')])
-class idForm(Form):
+class idForm(FlaskForm):
    id = TextField('id', validators=[InputRequired('Id Required')])
-class RadioForm(Form):
+class RadioForm(FlaskForm):
    radioform = TextField('radioform', validators=[InputRequired('Field Is Required')])
 
 
