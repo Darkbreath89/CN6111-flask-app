@@ -40,7 +40,12 @@
 		  <input type="radio" name="radio" value="1"> Name of Sender<br>
 		  <input type="radio" name="radio" value="2"> Name of Receiver<br>
 		  <input type="radio" name="radio" value="3"> Id<br>
-  		  <input type="text" name="radioform" value=""><br>
+  		  <!--<input type="text" name="radioform" value=""><br>-->
+  		{{ form.csrf_token }} 
+  		{{ form.radioform }}
+  		{% for message in form.radioform.errors %}<!-- For lopp for each msg error from a specified field -->
+	   		{{ message }}
+		{% endfor %}<br>
 	  <input type="submit" value="Submit">
 	</form> 		
 		{% endif %}		

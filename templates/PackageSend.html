@@ -6,9 +6,14 @@
 <body>
 	<button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
 	<form action="http://localhost:5000/PackageSend" method="POST">
-	  Id<br>
+	 <!-- Id<br>
 	  <input type="text" name="id" value="">
-	  <br><br>
+	  <br><br>-->
+	   {{ form.csrf_token }}
+	   {{ form.id }}
+	   	{% for message in form.id.errors %}<!-- For lopp for each msg error from a specified field -->
+	   		{{ message }}
+		{% endfor %}<br>
 	  <input type="submit" value="Submit">
 	</form> 
 	

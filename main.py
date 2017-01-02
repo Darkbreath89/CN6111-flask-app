@@ -1,9 +1,24 @@
 from flask import Flask, render_template, request
+from flask_wtf import Form
+from wtforms import TextField
+from wtforms.validators import InputRequired
 from alchemy import db
 from alchemy import Package
 import time
 app = Flask(__name__)
 app.secret_key = 'random string'
+
+class FieldForm(Form):#All the form in this class with Form as constructor
+   fnms = TextField('fnms', validators=[InputRequired('Provide Sender Name')])
+   fnmr = TextField('fnmr', validators=[InputRequired('Provide Receiver Name')])
+   address = TextField('address', validators=[InputRequired('Adress is Required')])
+   city = TextField('city', validators=[InputRequired('City Required')])
+   pc = TextField('pc', validators=[InputRequired('Postal code Required')])
+class idForm(Form):
+   id = TextField('id', validators=[InputRequired('Id Required')])
+class RadioForm(Form):
+   radioform = TextField('radioform', validators=[InputRequired('Field Is Required')])
+
 
 @app.route('/',methods = ['POST', 'GET'])
 def home():	
@@ -11,40 +26,50 @@ def home():
    
 @app.route('/NewPackage',methods = ['POST', 'GET'])
 def newpackage():
+	form = FieldForm()#form variable 
 	msg=None
+
 	if request.method=='POST':
-		new_package=Package(sender_name=request.form['fnms'],rec_name=request.form['fnmr'],city=request.form['city'],address=request.form['address'],tk=request.form['pc'],rdate=time.strftime('%d/%m/%Y'))
-		db.session.add(new_package)
-		db.session.commit()
-		msg='You successfully added a new entry'
-	return render_template('NewPackage.html',msg=msg)
+		if form.validate_on_submit():
+			new_package=Package(sender_name=request.form['fnms'],rec_name=request.form['fnmr'],city=request.form['city'],address=request.form['address'],tk=request.form['pc'],rdate=time.strftime('%d/%m/%Y'))
+			db.session.add(new_package)
+			db.session.commit()
+			msg='You successfully added a new entry'
+	return render_template('NewPackage.html',msg=msg, form=form)#define form
 	
 @app.route('/PackageSend',methods = ['POST', 'GET'])
 def packagesend():
+	form = idForm()#form variable 
 	msg=None
 	if request.method=='POST':
-		update_this=Package.query.filter_by(id=request.form['id']).first()
-		if update_this:
-			update_this.sdate=time.strftime('%d/%m/%Y')
-			db.session.commit()
-			msg='Sent Date added to entry'
-		else:
-			msg='Entry does not exist'
-	return render_template('PackageSend.html',msg=msg)
+		if form.validate_on_submit():
+			update_this=Package.query.filter_by(id=request.form['id']).first()
+			if update_this:
+				update_this.sdate=time.strftime('%d/%m/%Y')
+				db.session.commit()
+				msg='Sent Date added to entry'
+			else:
+				msg='Entry does not exist'
+	return render_template('PackageSend.html',msg=msg, form=form)#define form
 
 @app.route('/Inventory',methods = ['POST', 'GET'])
 def inventory():
+	form = RadioForm()#form variable 
 	list=None
-	if request.method=='POST':		
+	if request.method=='POST':
+
 		if request.form['radio']=="0":
 			list=Package.query.all()
 		elif request.form['radio']=="1":
-			list=Package.query.filter_by(sender_name=request.form['radioform'])
+			if form.validate_on_submit():
+				list=Package.query.filter_by(sender_name=request.form['radioform'])
 		elif request.form['radio']=="2":
-			list=Package.query.filter_by(rec_name=request.form['radioform'])
+			if form.validate_on_submit():
+				list=Package.query.filter_by(rec_name=request.form['radioform'])
 		elif request.form['radio']=="3":
-			list=Package.query.filter_by(id=request.form['radioform'])		
-	return render_template('Inventory.html',list=list)	
+			if form.validate_on_submit():
+				list=Package.query.filter_by(id=request.form['radioform'])		
+	return render_template('Inventory.html',list=list,form=form)#define form	
 
 	
 if __name__ == '__main__':
