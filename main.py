@@ -11,7 +11,7 @@ app.secret_key = 'random string'
 class FieldForm(FlaskForm):#All the form in this class with FlaskForm as constructor
    fnms = TextField('fnms', validators=[InputRequired('Provide Sender Name')])
    fnmr = TextField('fnmr', validators=[InputRequired('Provide Receiver Name')])
-   address = TextField('address', validators=[InputRequired('Adress is Required')])
+   address = TextField('address', validators=[InputRequired('Address is Required')])
    city = TextField('city', validators=[InputRequired('City Required')])
    pc = TextField('pc', validators=[InputRequired('Postal code Required')])
 class idForm(FlaskForm):
