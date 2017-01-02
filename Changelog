@@ -3,3 +3,4 @@ V 0.2 Simple Functional app. Changing Html generated fields to python generated 
 V 0.3 Added Delete functionality
 V 0.4 Changed flask_wtf Form to FlaskForm to suppress deprivation warnings. Added "app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False" line to alchemy.py to suppress relevant warning.
 V 0.5 Added some CSS. 
+V 0.6 Created a case for package already sent to prevent update on sdate and show the corresponding message.
