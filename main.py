@@ -45,9 +45,12 @@ def packagesend():
 		if form.validate_on_submit():
 			update_this=Package.query.filter_by(id=request.form['id']).first()
 			if update_this:
-				update_this.sdate=time.strftime('%d/%m/%Y')
-				db.session.commit()
-				msg='Sent Date added to entry'
+				if update_this.sdate==None:
+					update_this.sdate=time.strftime('%d/%m/%Y')
+					db.session.commit()
+					msg='Sent Date added to entry'
+				else:
+					msg='Package already sent'
 			else:
 				msg='Entry does not exist'
 	return render_template('PackageSend.html',msg=msg, form=form)#define form
