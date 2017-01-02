@@ -46,7 +46,15 @@ form {
   margin-top: 3%;
   background-color:
 }
-
+#msg1 {
+	color: green;
+}
+#msg2 {
+	color: red;
+}
+#msg3 {
+	color: black;
+}
 </style>
 <title>PackageSend</title>
 </head>
@@ -67,9 +75,13 @@ form {
 	   		<div id="msg">{{ message }}</div>
 		{% endfor %}<br>
 	  <input type="submit" value="Submit">
-    <div id="result">
-    {% if msg %}
-      <p><strong> {{ msg }}</strong>
+    	<div id="result">
+    {% if msg=='Sent Date added to entry' %}
+      <p id=msg1><strong> {{ msg }}</strong></p>
+    {% elif msg=='Package already sent' %}
+      <p id=msg2><strong> {{ msg }}</strong></p>
+    {% elif msg=='Entry does not exist' %}
+      <p id=msg3><strong> {{ msg }}</strong></p> 
     {% endif %}
     </div>
 	</form> 
