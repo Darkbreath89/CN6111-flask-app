@@ -2,10 +2,56 @@
 <html>
 <head>
 <title>NewPackage</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link rel="stylesheet" href="../static/main.css">
+<style>
+#insert {
+  background: #F9F9F9;
+  padding: 30px;
+  margin: 20px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 8px;
+  font-weight: 100;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+input[type=submit] {
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    margin-top: 0%;
+    font-size: 18px;
+    color:black;
+}
+form {
+	color: black;
+}
+#msg{
+	color:red;
+}
+#success{
+	color:green;
+	margin-top: 3%;
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+</style>
 </head>
 <body>
+<div class="container">
+	<center>
 	<button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
-	<form action="http://localhost:5000/NewPackage" method="POST">
+	<form id="insert" action="http://localhost:5000/NewPackage" method="POST">
 	<!--  Full Name of Sender<br>
 	  <input type="text" name="fnms" value="">
 	  <br>
@@ -25,39 +71,42 @@
 	   {{ form.csrf_token }}
 	   Full Name of Sender<br>
 	   {{ form.fnms }} <!-- render specified form textfield -->
-		{% for message in form.fnms.errors %}<!-- For lopp for each msg error from a specified field -->
-	   		{{ message }}
+		{% for message in form.fnms.errors %}<!-- For loop for each msg error from a specified field -->
+	   		<div id="msg">{{ message }}</div>
 		{% endfor %}<br>
 		<!-- Full Name of Receiver -->
 	   Full Name of Receiver<br>
 	   {{ form.fnmr }}
 		{% for message in form.fnmr.errors %}
-	   		{{ message }}
+	   		<div id="msg">{{ message }}</div>
 		{% endfor %}<br>
 		<!-- Address -->
 	   Address<br>
 	   {{ form.address }}
 		{% for message in form.address.errors %}
-	   		{{ message }}
+	   		<div id="msg">{{ message }}</div>
 		{% endfor %}
 	   <br>
 		<!-- City -->
-	   City<br>
+	   City<br> 
 	   {{ form.city }}
 		{% for message in form.city.errors %}
-	   		{{ message }}
+	   		<div id="msg">{{ message }}</div>
 		{% endfor %}<br>
 		<!-- Postal Code -->
 	   Postal Code<br>
 	   {{ form.pc }}
 	   	{% for message in form.pc.errors %}
-   		{{ message }}
+   			<div id="msg">{{ message }}</div>
 		{% endfor %}<br>
-	  <br>
-	  <input type="submit" value="submit">
-	</form> 
-		{% if msg %}
-			<p><strong> {{ msg }}</strong>
+	  	<br>
+	  	<input type="submit" value="Submit">
+	  	<div id="success">{% if msg %}
+			<p><strong> {{ msg }}</strong></p>
 		{% endif %}
+		</div>	
+	</form> 
+	</center>	
+</div>		
 </body>
 </html>

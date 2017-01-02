@@ -1,24 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="../static/main.css">
+<style>
+
+#insert {
+  background: #F9F9F9;
+  padding: 30px;
+  margin: 20px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 8px;
+  font-weight: 100;
+  font-size: 14px;
+  line-height: 30px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+input[type=submit] {
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    margin-top: 3%;
+    font-size: 18px;
+    color:black;
+}
+form {
+	color: black;
+}
+#msg{
+  color:red;
+}
+#result{
+  color:green;
+  margin-top: 3%;
+  background-color:
+}
+
+</style>
 <title>PackageSend</title>
 </head>
 <body>
+<div class="container">
+	<div class="row">
+	<center>
 	<button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
-	<form action="http://localhost:5000/PackageSend" method="POST">
+	
+	<form id="insert" action="http://localhost:5000/PackageSend" method="POST">
 	 <!-- Id<br>
 	  <input type="text" name="id" value="">
 	  <br><br>-->
+    <p>Give ID</p>
 	   {{ form.csrf_token }}
 	   {{ form.id }}
 	   	{% for message in form.id.errors %}<!-- For lopp for each msg error from a specified field -->
-	   		{{ message }}
+	   		<div id="msg">{{ message }}</div>
 		{% endfor %}<br>
 	  <input type="submit" value="Submit">
+    <div id="result">
+    {% if msg %}
+      <p><strong> {{ msg }}</strong>
+    {% endif %}
+    </div>
 	</form> 
-	
-		{% if msg %}
-			<p><strong> {{ msg }}</strong>
-		{% endif %}
+	</center>
+	</div>	
+</div>		
 </body>
 </html>
