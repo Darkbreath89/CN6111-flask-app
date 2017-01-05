@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import TextField
-from wtforms.validators import InputRequired
+from wtforms.validators import InputRequired, Length
 from alchemy import db
 from alchemy import Package
 import time
@@ -9,15 +9,15 @@ app = Flask(__name__)
 app.secret_key = 'random string'
 
 class FieldForm(FlaskForm):#All the form in this class with FlaskForm as constructor
-   fnms = TextField('fnms', validators=[InputRequired('Provide Sender Name')])
-   fnmr = TextField('fnmr', validators=[InputRequired('Provide Receiver Name')])
-   address = TextField('address', validators=[InputRequired('Address is Required')])
-   city = TextField('city', validators=[InputRequired('City Required')])
-   pc = TextField('pc', validators=[InputRequired('Postal code Required')])
+   fnms = TextField('fnms', validators=[InputRequired('Provide Sender Name'),Length(min=3, max=30, message=None)])
+   fnmr = TextField('fnmr', validators=[InputRequired('Provide Receiver Name'),Length(min=3, max=30, message=None)])
+   address = TextField('address', validators=[InputRequired('Address is Required'),Length(min=3, max=30, message=None)])
+   city = TextField('city', validators=[InputRequired('City Required'),Length(min=3, max=30, message=None)])
+   pc = TextField('pc', validators=[InputRequired('Postal code Required'),Length(min=3, max=30, message=None)])
 class idForm(FlaskForm):
-   id = TextField('id', validators=[InputRequired('Id Required')])
+   id = TextField('id', validators=[InputRequired('Id Required'),Length(min=1, max=5, message=None)])
 class RadioForm(FlaskForm):
-   radioform = TextField('radioform', validators=[InputRequired('Field Is Required')])
+   radioform = TextField('radioform', validators=[InputRequired('Field Is Required'),Length(min=1, max=30, message=None)])
 
 
 @app.route('/',methods = ['POST', 'GET'])
