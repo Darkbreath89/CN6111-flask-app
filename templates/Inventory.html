@@ -71,14 +71,14 @@ th {
 
 </head>
 <body>
-<div class="container">
+<div class="container"> <!-- Main container for all content: max-width 800px for better response -->
 <center>
   <button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
 </center>
     {% if list %}
     <form action="http://localhost:5000/Inventory" method="POST">
-    <div id="tablebg">
-      <table border = 1>
+    <div id="tablebg"> <!-- This table will print the results of the query of the form. -->
+      <table border = 1> 
       <tr id=tr1>
         <th>Package Id</th>
         <th>Sender Name</th>
@@ -108,13 +108,12 @@ th {
     <input type="submit" name="action" value="Delete Selected">
   </form>
     {% else %}
-  </center>
-  <div class="radioform1"> 
+  <div class="radioform1"> <!-- This form will do a query on the database. --> 
       <form id="insert" action="http://localhost:5000/Inventory" method="POST">
       <center>
       <p>Filter By</p>
-          <div id="radiobuttons">
-          <input type="radio" name="radio" value="0" checked="checked"> All<br>
+          <div id="radiobuttons"> 
+          <input type="radio" name="radio" value="0" checked="checked"> All<br> 
           <input type="radio" name="radio" value="1"> Name of Sender<br>
           <input type="radio" name="radio" value="2"> Name of Receiver<br>
           <input type="radio" name="radio" value="3"> Id<br>
@@ -122,12 +121,12 @@ th {
             <!--<input type="text" name="radioform" value=""><br>-->
           <div id="result">  
           {{ form.csrf_token }} 
-          {{ form.radioform }}
+          {{ form.radioform }} 
           {% for message in form.radioform.errors %}<!-- For lopp for each msg error from a specified field -->
             <br>{{ message }}
         {% endfor %}<br>
         </div>
-        <input type="submit" name="action" value="Submit">
+        <input type="submit" name="action" value="Submit"> <!-- Submit button -->
         </center>
       </form>
   </div> 
