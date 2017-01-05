@@ -58,20 +58,20 @@ def packagesend():
 @app.route('/Inventory',methods = ['POST', 'GET'])
 def inventory():
 	form = RadioForm()#form variable 
-	list=None
+	list=[]
 	if request.method=='POST':
 		if request.form["action"]=="Submit":
 			if request.form['radio']=="0":
-				list=Package.query.all()
+				list+=Package.query.all()
 			elif request.form['radio']=="1":
 				if form.validate_on_submit():
-					list=Package.query.filter_by(sender_name=request.form['radioform'])
+					list+=Package.query.filter_by(sender_name=request.form['radioform'])
 			elif request.form['radio']=="2":
 				if form.validate_on_submit():
-					list=Package.query.filter_by(rec_name=request.form['radioform'])
+					list+=Package.query.filter_by(rec_name=request.form['radioform'])
 			elif request.form['radio']=="3":
 				if form.validate_on_submit():
-					list=Package.query.filter_by(id=request.form['radioform'])
+					list+=Package.query.filter_by(id=request.form['radioform'])
 		else:
 			for f in request.form.getlist('row'):
 				Package.query.filter_by(id=f).delete()
