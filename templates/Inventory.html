@@ -62,10 +62,9 @@ th {
    text-align: center;
 }
 
-#result{
+#error{
   color:red;
   margin-top: 3%;
-  background-color:
 }
 </style>
 
@@ -123,8 +122,8 @@ th {
           {{ form.csrf_token }} 
           {{ form.radioform }} 
           {% for message in form.radioform.errors %}<!-- For lopp for each msg error from a specified field -->
-            <br>{{ message }}
-        {% endfor %}<br>
+            <p id=error>{{ message }}<p>
+        {% endfor %}
         </div>
         <input type="submit" name="action" value="Submit"> <!-- Submit button -->
         </center>
