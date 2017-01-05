@@ -75,7 +75,7 @@ th {
 <center>
   <button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
 </center>
-    {% if list %}
+    {% if list is %} <!-- Custom Test needs modification of Jinja2 tests.py --!>
     <form action="http://localhost:5000/Inventory" method="POST">
     <div id="tablebg"> <!-- This table will print the results of the query of the form. -->
       <table border = 1> 
