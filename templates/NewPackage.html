@@ -52,48 +52,34 @@ form {
 	<center>
 	<button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
 	<form id="insert" action="http://localhost:5000/NewPackage" method="POST">
-	<!--  Full Name of Sender<br>
-	  <input type="text" name="fnms" value="">
-	  <br>
-	  Full Name of Receiver<br>
-	  <input type="text" name="fnmr" value="">
-	  <br>
-	  Address<br>
-	  <input type="text" name="address" value="">
-	  <br>
-	  City<br>
-	  <input type="text" name="city" value="">
-	  <br>
-	  Postal Code<br>
-	  <input type="text" name="pc" value="">
-	  <br>-->
-	  <!-- Full Name of Sender -->
+	
+	  <!-- Requiers Full Name of Sender -->
 	   {{ form.csrf_token }}
 	   Full Name of Sender<br>
 	   {{ form.fnms }} <!-- render specified form textfield -->
 		{% for message in form.fnms.errors %}<!-- For loop for each msg error from a specified field -->
 	   		<div id="msg">{{ message }}</div>
 		{% endfor %}<br>
-		<!-- Full Name of Receiver -->
+		<!-- Requiers Full Name of Receiver -->
 	   Full Name of Receiver<br>
 	   {{ form.fnmr }}
 		{% for message in form.fnmr.errors %}
 	   		<div id="msg">{{ message }}</div>
 		{% endfor %}<br>
-		<!-- Address -->
+		<!-- Requiers Address from the user -->
 	   Address<br>
 	   {{ form.address }}
 		{% for message in form.address.errors %}
 	   		<div id="msg">{{ message }}</div>
 		{% endfor %}
 	   <br>
-		<!-- City -->
+		<!-- Requires city from the user -->
 	   City<br> 
 	   {{ form.city }}
 		{% for message in form.city.errors %}
 	   		<div id="msg">{{ message }}</div>
 		{% endfor %}<br>
-		<!-- Postal Code -->
+		<!-- Requires postal code from the user -->
 	   Postal Code<br>
 	   {{ form.pc }}
 	   	{% for message in form.pc.errors %}
