@@ -73,7 +73,7 @@ def inventory():
 				if form.validate_on_submit():
 					list+=Package.query.filter_by(id=request.form['radioform'])
 			if len(list)<1 and len(form.radioform.errors)<1:
-				form.radioform.errors.append("No entry")		
+				form.radioform.errors=["No Entries"]		
 		else:
 			for f in request.form.getlist('row'):
 				Package.query.filter_by(id=f).delete()
