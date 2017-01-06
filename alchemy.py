@@ -14,3 +14,5 @@ class Package(db.Model):
 	tk=db.Column(db.String(10))
 	rdate=db.Column(db.String(10))
 	sdate=db.Column(db.String(10))
+	
+db.create_all()
