@@ -56,9 +56,9 @@ form {
 <div class="container"> <!-- Main container for all content: max-width 800px for better response -->
 	<div class="row">
 	<center>
-	<button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
+	<button type="button" onclick="location.href='{{ url_for('home') }}'">Home</button>
 	
-	<form id="insert" action="http://localhost:5000/PackageSend" method="POST">
+	<form id="insert" action="{{ url_for('packagesend') }}" method="POST">
 	 <!-- Id<br>
 	  <input type="text" name="id" value="">
 	  <br><br>-->
