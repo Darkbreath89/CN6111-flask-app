@@ -50,8 +50,8 @@ form {
 <body>
 <div class="container"> <!-- Main container for all content: max-width 800px for better response -->
 	<center>
-	<button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
-	<form id="insert" action="http://localhost:5000/NewPackage" method="POST">
+	<button type="button" onclick="location.href='{{ url_for('home') }}'">Home</button>
+	<form id="insert" action="{{ url_for('newpackage') }}" method="POST">
 	
 	  <!-- Requiers Full Name of Sender -->
 	   {{ form.csrf_token }}
