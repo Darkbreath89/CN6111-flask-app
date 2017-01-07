@@ -38,21 +38,15 @@ input[type=submit] {
 form {
 	color: black;
 }
-#msg{
-  color:red;
-}
 #result{
   color:green;
   margin-top: 3%;
   background-color:
 }
-#msg1 {
+#success {
 	color: green;
 }
-#msg2 {
-	color: red;
-}
-#msg3 {
+#error {
 	color: red;
 }
 </style>
@@ -72,17 +66,13 @@ form {
 	   {{ form.csrf_token }}
 	   {{ form.id }}
 	   	{% for message in form.id.errors %}<!-- For lopp for each msg error from a specified field -->
-	   		<div id="msg">{{ message }}</div>
+	   		<div id="error">{{ message }}</div>
 		{% endfor %}<br>
 	  <input type="submit" value="Submit">
     	<div id="result">
-    {% if msg=='Sent Date added to entry' %}
-      <p id=msg1><strong> {{ msg }}</strong></p>
-    {% elif msg=='Package already sent' %}
-      <p id=msg2><strong> {{ msg }}</strong></p>
-    {% elif msg=='Entry does not exist' %}
-      <p id=msg3><strong> {{ msg }}</strong></p> 
-    {% endif %}
+  	{% if msg %}	
+      		<p id={{'success' if msgtype else 'error'}}><strong> {{ msg }}</strong></p>     
+	{% endif %} 
     </div>
 	</form> 
 	</center>
