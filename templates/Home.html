@@ -18,9 +18,9 @@
 <body>
 <div class="container"> <!-- This will be 800px width and will margin top 20% -->
 	<div class="row"> <!-- 3 buttons for 3 uses. newpackage, inventory, packagesend -->
-		<div class="col-md-4"><button type="button" onclick="location.href='http://localhost:5000/NewPackage'"><h4>NewPackage</button></h4></div>
-		<div class="col-md-4"><button type="button" onclick="location.href='http://localhost:5000/Inventory'"><h4>Inventory</h4></button></div>
-		<div class="col-md-4"><button type="button" onclick="location.href='http://localhost:5000/PackageSend'"><h4>PackageSend</h4></button></div>
+		<div class="col-md-4"><button type="button" onclick="location.href='{{ url_for('newpackage') }}'"><h4>NewPackage</button></h4></div>
+		<div class="col-md-4"><button type="button" onclick="location.href='{{ url_for('inventory') }}'"><h4>Inventory</h4></button></div>
+		<div class="col-md-4"><button type="button" onclick="location.href='{{ url_for('packagesend') }}'"><h4>PackageSend</h4></button></div>
 	</div>	
 </div>	
 </body>
