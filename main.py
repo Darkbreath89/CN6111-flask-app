@@ -70,28 +70,28 @@ def packagesend():
 @app.route('/Inventory',methods = ['POST', 'GET'])
 def inventory():
 	form = RadioForm()
-	list=[]
+	result=[]
 	if request.method=='POST':
 		if request.form["action"]=="Submit":
 			if request.form['radio']=="0":
-				list+=Package.query.all()
+				result+=Package.query.all()
 			elif request.form['radio']=="1":
 				if form.validate_on_submit():
-					list+=Package.query.filter_by(sender_name=request.form['radioform'])
+					result+=Package.query.filter_by(sender_name=request.form['radioform'])
 			elif request.form['radio']=="2":
 				if form.validate_on_submit():
-					list+=Package.query.filter_by(rec_name=request.form['radioform'])
+					result+=Package.query.filter_by(rec_name=request.form['radioform'])
 			elif request.form['radio']=="3":
 				if form.validate_on_submit():
-					list+=Package.query.filter_by(id=request.form['radioform'])
-			if len(list)<1 and len(form.radioform.errors)<1:# Condition check if query returned empty and also there were no validator check fails
+					result+=Package.query.filter_by(id=request.form['radioform'])
+			if len(result)<1 and len(form.radioform.errors)<1:# Condition check if query returned empty and also there were no validator check fails
 				form.radioform.errors=["No Entries"] #Force form.radioform.errors to be a list		
 		else:
 			for f in request.form.getlist('row'):
 				Package.query.filter_by(id=f).delete()
 				db.session.commit()
-				list=Package.query.all()
-	return render_template('Inventory.html',list=list,form=form)
+				result=Package.query.all()
+	return render_template('Inventory.html',result=result,form=form)
 
 	
 if __name__ == '__main__':
