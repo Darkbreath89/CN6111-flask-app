@@ -74,7 +74,7 @@ th {
 <center>
   <button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
 </center>
-    {% if list %}
+    {% if result %}
     <form action="http://localhost:5000/Inventory" method="POST">
     <div id="tablebg"> <!-- This table will print the results of the query of the form. -->
       <table border = 1> 
@@ -88,7 +88,7 @@ th {
         <th>Date Received</th>
         <th>Date Sent</th>
       </tr>
-         {% for l in list %}      
+         {% for l in result %}      
             <tr>
                <td> {{ l.id }} </td>
                <td> {{ l.sender_name }} </td>
