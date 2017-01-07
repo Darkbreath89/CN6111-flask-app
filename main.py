@@ -49,6 +49,7 @@ def newpackage():
 def packagesend():
 	form = idForm() 
 	msg=None
+	msgtype=True
 	if request.method=='POST':
 		if form.validate_on_submit():
 			update_this=Package.query.filter_by(id=request.form['id']).first()
@@ -57,11 +58,14 @@ def packagesend():
 					update_this.sdate=time.strftime('%d/%m/%Y')
 					db.session.commit()
 					msg='Sent Date added to entry'
+					msgtype=True
 				else:
 					msg='Package already sent'
+					msgtype=False
 			else:
 				msg='Entry does not exist'
-	return render_template('PackageSend.html',msg=msg, form=form)
+				msgtype=False
+	return render_template('PackageSend.html',msg=msg, form=form,msgtype=msgtype)
 
 @app.route('/Inventory',methods = ['POST', 'GET'])
 def inventory():
