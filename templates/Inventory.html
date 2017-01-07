@@ -72,10 +72,10 @@ th {
 <body>
 <div class="container"> <!-- Main container for all content: max-width 800px for better response -->
 <center>
-  <button type="button" onclick="location.href='http://localhost:5000/'">Home</button>
+  <button type="button" onclick="location.href='{{ url_for('home') }}'">Home</button>
 </center>
     {% if result %}
-    <form action="http://localhost:5000/Inventory" method="POST">
+    <form action="{{ url_for('inventory') }}" method="POST">
     <div id="tablebg"> <!-- This table will print the results of the query of the form. -->
       <table border = 1> 
       <tr id=tr1>
@@ -108,7 +108,7 @@ th {
   </form>
     {% else %}
   <div class="radioform1"> <!-- This form will do a query on the database. --> 
-      <form id="insert" action="http://localhost:5000/Inventory" method="POST">
+      <form id="insert" action="{{ url_for('inventory') }}" method="POST">
       <center>
       <p>Filter By</p>
           <div id="radiobuttons"> 
